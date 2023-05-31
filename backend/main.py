@@ -19,7 +19,7 @@ app = Flask(__name__, static_folder='../vue-project/dist/static', template_folde
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def index(path):
-    c.executemany("insert into temp_table (temp, timestamp) values (?, ?)", temp_time)
+    # c.executemany("insert into temp_table (temp, timestamp) values (?, ?)", temp_time)
     return render_template('index.html')
 
 if __name__ == '__main__':
