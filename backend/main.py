@@ -1,5 +1,9 @@
 from flask import Flask, render_template #Flask
 import sqlite3 #データベース
+from api import api_bp
+from models import get_all, init_db, insert#ORMからメソッドimport   
+
+
 
 #データベースに接続
 conn = sqlite3.connect("Sample.sqlite3")
@@ -14,6 +18,9 @@ conn.close()
 
 
 app = Flask(__name__, static_folder='../vue-project/dist/static', template_folder='../vue-project/dist')
+# app.register_blueprint(api_bp)#apiのインスタンスを登録
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///myspa.db'
+app.register_blueprint(api_bp)
 
 
 @app.route('/', defaults={'path': ''})
@@ -23,4 +30,9 @@ def index(path):
     return render_template('index.html')
 
 if __name__ == '__main__':
+    with app.app_context():
+        init_db(app)
+        if not get_all():
+            insert('foo', 'This is foo.')
+            insert('bar', 'This is bar.')
     app.run()
