@@ -17,7 +17,7 @@ conn.commit()
 conn.close()
 
 
-app = Flask(__name__, static_folder='../vue-project/dist/static', template_folder='../vue-project/dist')
+app = Flask(__name__, static_folder='../vue-project/dist/assets', template_folder='../vue-project/dist')
 # app.register_blueprint(api_bp)#apiのインスタンスを登録
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///myspa.db'
 app.register_blueprint(api_bp)
