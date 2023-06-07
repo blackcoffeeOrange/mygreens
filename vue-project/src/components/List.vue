@@ -45,11 +45,11 @@ const addPlant = () =>{
                 追加
         </button>
         <ul>
-            <li v-for="plant in plantlist">
-                <router-link to="/detail">
-                    {{ plant.id }}
-                    <span class="icon chevron_right"></span>
-                </router-link>
+            <li v-for="(todo, i) in plantList">
+                <!-- <router-link to="/detail"> -->
+                    {{ todo[i] }}
+                    <!-- <span class="icon chevron_right"></span> -->
+                <!-- </router-link> -->
             </li>
             <li>
            
