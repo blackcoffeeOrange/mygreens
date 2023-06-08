@@ -1,18 +1,25 @@
-<script setup  lang="ts">
+<script setup >
+import Header from './components/AppHeader.vue'
+
+// 親コンポーネントからコンポーネントに渡す
+// props
+import { onMounted } from 'vue'
+
+onMounted(() => {
+  console.log(`コンポーネントがマウントされました。`)
+})
+
 </script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-  </header>
 
+  <Header color="red">taitoru</Header>
   <main>
      <router-view />
   </main>
 </template>
-
 <style scoped>
 header {
+
   line-height: 1.5;
 }
 
