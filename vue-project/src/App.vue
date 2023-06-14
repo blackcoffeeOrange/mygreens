@@ -1,18 +1,8 @@
 <script setup >
 import Header from './components/AppHeader.vue'
 
-// 親コンポーネントからコンポーネントに渡す
-// props
-import { onMounted } from 'vue'
-
-onMounted(() => {
-  console.log(`コンポーネントがマウントされました。`)
-})
-
 </script>
 <template>
-
-  <Header color="red">taitoru</Header>
   <main>
      <router-view />
   </main>

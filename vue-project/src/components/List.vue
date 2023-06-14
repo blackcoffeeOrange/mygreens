@@ -1,8 +1,8 @@
 <template>
-    <h3>{{ title }}({{ number }})</h3>
+    <!-- <h3>{{ title }}({{ number }})</h3> -->
 
     <!-- API経由でデータを取得 -->
-    <input type="text" v-model="newPlant">
+    <!-- <input type="text" v-model="newPlant">
     <button @click="addPlant()">
         追加
     </button>
@@ -18,9 +18,7 @@
     </ul>
     <p v-else>
         追加してください
-    </p>
-
-
+    </p> -->
 </template>
 <script setup>
 
