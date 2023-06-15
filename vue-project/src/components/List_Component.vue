@@ -1,5 +1,26 @@
 <template>
-    <!-- <h3>{{ title }}({{ number }})</h3> -->
+   
+    <!-- 名前だけで新規登録 -->
+    <div>
+        <label for="">name</label>
+        <input type="text" v-model="name">
+    </div>
+    <div>
+        <button @click="save">追加</button>
+    </div>
+
+    <p>{{ count }}</p>
+    
+   <ul>
+        <li v-for="green in greens" :key="green.id">
+            <router-link :to="{name: 'detail', params:{ id: green.id } }">
+                {{ green.id }},
+                {{ green.name }}
+            </router-link>
+        </li>
+   </ul>
+   
+       <!-- <h3>{{ title }}({{ number }})</h3> -->
 
     <!-- API経由でデータを取得 -->
     <!-- <input type="text" v-model="newPlant">
@@ -21,6 +42,30 @@
     </p> -->
 </template>
 <script setup>
+import { computed, reactive, ref } from 'vue'
+import { useStore } from 'vuex'
+
+const store = useStore()
+const greens = computed(() => store.getters.getAll)
+const count = computed(() => store.state.count) // typed as number
+
+
+
+/**名前のみで作成 */
+const name = ref('')
+const newGreen = computed(() => {
+    name: name
+})
+
+// 保存
+const save = () => {
+     console.log("sname", newGreen.name)
+    store.commit('save', newGreen.value)
+}
+// const axios =
+// process.env.VUE_APP_REST_SERVER === 'json-mock'
+//      ? require('axios').create({ baseURL: 'http://localhost:3000' })
+//     : require('axios').create()
 
 
 // import axios from 'axios'
@@ -85,7 +130,4 @@
 //         // always executed(axiosの処理結果によらずいつも実行させたい処理を記述)
 //         console.log("終了");
 //     });
-
-
-
 </script>

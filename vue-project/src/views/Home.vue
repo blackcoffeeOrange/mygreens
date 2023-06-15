@@ -1,8 +1,6 @@
 <template>
-    <div class="home">
-        <h1>This is a home page</h1>
-    </div>
+  <List_Component/>
 </template>
-
 <script setup>
+import List_Component from '../components/List_Component.vue'
 </script>
