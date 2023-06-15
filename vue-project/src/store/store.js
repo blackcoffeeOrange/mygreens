@@ -18,9 +18,10 @@ export default createStore({
         }
     },
     mutations: {
-        save(state, green) {
-            console.log("state.greens", state.greens)
-            console.log("state.greens", state.greens)
+        save(state, newGreen) {
+            console.log("newGreen", newGreen)
+
+            console.log("はい")
             // console.log("sname", name.id)
 
             // // idがあったら
@@ -29,23 +30,23 @@ export default createStore({
             //   x.title = newMemo.title
             //   x.content = newMemo.content
             // } else {
-            // name.id = ++state.count
+            newGreen.id = ++state.count
             // unshift() 配列の先頭に値を挿入
-            state.greens.unshift(name)
+            state.greens.unshift(newGreen)
         },
         delete(state, id) {
-            
+
         },
     },
 
 
     actions: {
 
-},
+    },
     modules: {
-    // products
-},
+        // products
+    },
     pludgins: {
 
-}
+    }
 })

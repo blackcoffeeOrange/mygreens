@@ -44,7 +44,10 @@
 <script setup>
 import { computed, reactive, ref } from 'vue'
 import { useStore } from 'vuex'
+import { useRouter, useRoute } from 'vue-router';
 
+const Router = useRouter()
+const Route = useRoute()
 const store = useStore()
 const greens = computed(() => store.getters.getAll)
 const count = computed(() => store.state.count) // typed as number
@@ -53,14 +56,21 @@ const count = computed(() => store.state.count) // typed as number
 
 /**名前のみで作成 */
 const name = ref('')
-const newGreen = computed(() => {
+// const newGreen = computed(() => {
+//     name: name
+// })
+const newGreen = {
+    // dataの中のtitleとcontent
     name: name
-})
-
+}
 // 保存
 const save = () => {
-     console.log("sname", newGreen.name)
-    store.commit('save', newGreen.value)
+    store.commit('save', newGreen )
+    Router.push('/')
+    // name.value = ''
+    console.log("sname", name)
+
+    // store.commit('save', newGreen.value)
 }
 // const axios =
 // process.env.VUE_APP_REST_SERVER === 'json-mock'

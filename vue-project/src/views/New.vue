@@ -25,6 +25,7 @@ const store = useStore()
 const name = ref('')
 // 保存
 const save = () => {
-    store.commit('save', name)
+
+    store.commit({ type: 'save', name: this.name })
 }
 </script>
