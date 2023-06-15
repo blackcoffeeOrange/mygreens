@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Home from "../views/Home.vue";
 
-const routes:Array<RouteRecordRaw> = [
+const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "home",
@@ -11,6 +11,11 @@ const routes:Array<RouteRecordRaw> = [
     path: '/list',
     name: 'list',
     component: () => import('../views/List.vue')
+  },
+  {
+    path: '/new',
+    name: 'new',
+    component: () => import('../views/New.vue')
   },
   {
     path: '/detail/:id',
@@ -28,9 +33,9 @@ const routes:Array<RouteRecordRaw> = [
 // ルーターの生成
 const router = createRouter({
   history: createWebHistory()
-  ,routes
-  ,scrollBehavior(){//遷移時にページ位置を上に戻す
-    return { left : 0, top: 0}
+  , routes
+  , scrollBehavior() {//遷移時にページ位置を上に戻す
+    return { left: 0, top: 0 }
   }
 })
 
