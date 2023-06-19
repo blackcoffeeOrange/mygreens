@@ -3,7 +3,7 @@
     <!-- 名前だけで新規登録 -->
     <div>
         <label for="">name</label>
-        <input type="text" v-model="name">
+        <input type="text" v-model="newName">
     </div>
     <div>
         <button @click="save">追加</button>
@@ -42,9 +42,10 @@
     </p> -->
 </template>
 <script setup>
-import { computed, reactive, ref } from 'vue'
+import { computed, reactive, ref, onMounted } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter, useRoute } from 'vue-router';
+import axios from 'axios'
 
 const Router = useRouter()
 const Route = useRoute()
@@ -55,20 +56,23 @@ const count = computed(() => store.state.count) // typed as number
 
 
 /**名前のみで作成 */
-const name = ref('')
+const newName = ref('')
 // const newGreen = computed(() => {
 //     name: name
 // })
 const newGreen = {
     // dataの中のtitleとcontent
-    name: name
+    name: newName.value
 }
 // 保存
 const save = () => {
-    store.commit('save', newGreen )
-    Router.push('/')
-    // name.value = ''
-    console.log("sname", name)
+    // console.log("newName", newName.value)
+    // store.commit('save', newGreen.data )
+    store.commit('save', {
+         name: newName.value
+    })
+    // Router.push('/')
+    newName.value = ''
 
     // store.commit('save', newGreen.value)
 }
@@ -78,9 +82,6 @@ const save = () => {
 //     : require('axios').create()
 
 
-// import axios from 'axios'
-// import { reactive,ref,computed } from 'vue'
-// import { onMounted } from 'vue'
 // const state = reactive({ count: 0 })
 
 // const title = ref('一覧');
@@ -120,24 +121,5 @@ const save = () => {
 //         }
 //     }
 // })
-// axios.get('http://localhost:8000/green')
-//     .then(function (response) {
-        
-//         console.log("成功");
-//         // handle success(axiosの処理が成功した場合に処理させたいことを記述)
-//         plantList = response.data
-//         for (let i = 0; i < plantList.length; i++) {
-
-//             console.log(plantList[i]);
-//         }
-//         // console.log(listdata);
-//     })
-//     .catch(function (error) {
-//         // handle error(axiosの処理にエラーが発生した場合に処理させたいことを記述)
-//         console.log(error);
-//     })
-//     .finally(function () {
-//         // always executed(axiosの処理結果によらずいつも実行させたい処理を記述)
-//         console.log("終了");
-//     });
+// 
 </script>

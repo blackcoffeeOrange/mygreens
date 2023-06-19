@@ -7,7 +7,8 @@ import Header from './components/AppHeader.vue'
      <router-view />
   </main>
 </template>
-<style scoped>
+<style>
+
 header {
 
   line-height: 1.5;

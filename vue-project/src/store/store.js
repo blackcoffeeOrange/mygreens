@@ -38,10 +38,27 @@ export default createStore({
 
         },
     },
-
-
     actions: {
+axios.get('http://localhost:8000/green')
+//     .then(function (response) {
+        
+//         console.log("成功");
+//         // handle success(axiosの処理が成功した場合に処理させたいことを記述)
+//         plantList = response.data
+//         for (let i = 0; i < plantList.length; i++) {
 
+//             console.log(plantList[i]);
+//         }
+//         // console.log(listdata);
+//     })
+//     .catch(function (error) {
+//         // handle error(axiosの処理にエラーが発生した場合に処理させたいことを記述)
+//         console.log(error);
+//     })
+//     .finally(function () {
+//         // always executed(axiosの処理結果によらずいつも実行させたい処理を記述)
+//         console.log("終了");
+//     });
     },
     modules: {
         // products
