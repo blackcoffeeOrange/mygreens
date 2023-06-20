@@ -1,11 +1,11 @@
 import { createStore } from 'vuex'
-
+import axios from 'axios'
 
 export default createStore({
     state: {
         greens: [
-            { 'id': 1, 'name': 'bb' }
-            , { 'id': 2, 'name': 'abc' }
+            // { 'id': 1, 'name': 'bb' }
+            // , { 'id': 2, 'name': 'abc' }
         ]
         , count: 2
     },
@@ -20,8 +20,6 @@ export default createStore({
     mutations: {
         save(state, newGreen) {
             console.log("newGreen", newGreen)
-
-            console.log("はい")
             // console.log("sname", name.id)
 
             // // idがあったら
@@ -39,26 +37,33 @@ export default createStore({
         },
     },
     actions: {
-axios.get('http://localhost:8000/green')
-//     .then(function (response) {
         
-//         console.log("成功");
-//         // handle success(axiosの処理が成功した場合に処理させたいことを記述)
-//         plantList = response.data
-//         for (let i = 0; i < plantList.length; i++) {
-
-//             console.log(plantList[i]);
-//         }
-//         // console.log(listdata);
-//     })
-//     .catch(function (error) {
-//         // handle error(axiosの処理にエラーが発生した場合に処理させたいことを記述)
-//         console.log(error);
-//     })
-//     .finally(function () {
-//         // always executed(axiosの処理結果によらずいつも実行させたい処理を記述)
-//         console.log("終了");
-//     });
+        // アクションは、状態を変更するのではなく、ミューテーションをコミットします。
+        // アクションは任意の非同期処理を含むことができます。
+        getAll(context){
+            
+            console.log("getAll")
+            axios.get('http://localhost:8000/green')
+            .then(function (response) {
+                console.log("成功",response.data);
+                // handle success(axiosの処理が成功した場合に処理させたいことを記述)
+                context.state.greens = response.data
+                // for (let i = 0; i < plantList.length; i++) {
+        
+                //     console.log(plantList[i]);
+                // }
+                // console.log(listdata);
+                // return plantList
+            })
+            .catch(function (error) {
+                // handle error(axiosの処理にエラーが発生した場合に処理させたいことを記述)
+                console.log(error);
+            })
+            .finally(function () {
+                    // always executed(axiosの処理結果によらずいつも実行させたい処理を記述)
+                    console.log("終了");
+            });
+        }
     },
     modules: {
         // products

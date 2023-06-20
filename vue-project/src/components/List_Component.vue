@@ -1,51 +1,53 @@
 <template>
    
-    <!-- 名前だけで新規登録 -->
-    <div>
+   <div class="wrap">
+
+       <!-- 名前だけで新規登録 -->
+       <div>
         <label for="">name</label>
         <input type="text" v-model="newName">
     </div>
     <div>
         <button @click="save">追加</button>
     </div>
-
-    <p>{{ count }}</p>
     
-   <ul>
+    <p>{{ count }}</p>
+    <ul>
         <li v-for="green in greens" :key="green.id">
             <router-link :to="{name: 'detail', params:{ id: green.id } }">
                 {{ green.id }},
                 {{ green.name }}
             </router-link>
         </li>
-   </ul>
-   
-       <!-- <h3>{{ title }}({{ number }})</h3> -->
-
+    </ul>
+    
+    <!-- <h3>{{ title }}({{ number }})</h3> -->
+    
     <!-- API経由でデータを取得 -->
     <!-- <input type="text" v-model="newPlant">
-    <button @click="addPlant()">
-        追加
-    </button>
-    
-    <ul v-if="plants.length > 0">
-        <li v-for="(plant, i) in plants" v-bind:key="i">
-            <router-link to="/detail">
-            {{ plant }}
+        <button @click="addPlant()">
+            追加
+        </button>
+        
+        <ul v-if="plants.length > 0">
+            <li v-for="(plant, i) in plants" v-bind:key="i">
+                <router-link to="/detail">
+                    {{ plant }}
             <span @click="remocePlant(i)" style="cursor: pointer;">X</span>
             <span class="icon chevron_right"></span>
-            </router-link>  
-        </li>
-    </ul>
+        </router-link>  
+    </li>
+</ul>
     <p v-else>
         追加してください
     </p> -->
+</div>
 </template>
 <script setup>
 import { computed, reactive, ref, onMounted } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter, useRoute } from 'vue-router';
-import axios from 'axios'
+
 
 const Router = useRouter()
 const Route = useRoute()
@@ -53,8 +55,9 @@ const store = useStore()
 const greens = computed(() => store.getters.getAll)
 const count = computed(() => store.state.count) // typed as number
 
+store.dispatch('getAll')
 
-
+// console.log("greens",greens)
 /**名前のみで作成 */
 const newName = ref('')
 // const newGreen = computed(() => {
@@ -123,3 +126,13 @@ const save = () => {
 // })
 // 
 </script>
+<style scoped>
+.wrap{
+    height: 100vh;
+    padding: 15px;
+    background-color: var(--bg);
+    color: var(--color);
+    min-width: 15vw;
+    border-left:1px solid #04b146;
+}
+</style>

@@ -1,16 +1,40 @@
-<script setup >
-import Header from './components/AppHeader.vue'
+<script setup>
+import Header_Component from './components/Header_Component.vue'
+import SideNav_Component from './components/SideNav_Component.vue'
+// import Header from './components/AppHeader.vue'
 
 </script>
 <template>
-  <main>
-     <router-view />
-  </main>
+    <Header_Component/>
+    <div class="d-flex">
+      <SideNav_Component/>
+      <main>
+        <router-view />
+      </main>
+    </div>
 </template>
 <style>
-
+:root{
+  --bg: #313135;
+  --color: #e7e7f2;
+}
+ul,li{
+  margin: 0;
+  padding: 0;
+}
+li{
+  list-style: none;
+}
+main{
+  flex: 1;
+}
+a{
+  color: var(--color);
+  text-decoration: none;
+  display: inline-block;
+}
+/* 
 header {
-
   line-height: 1.5;
 }
 
@@ -35,5 +59,5 @@ header {
     place-items: flex-start;
     flex-wrap: wrap;
   }
-}
+} */
 </style>
