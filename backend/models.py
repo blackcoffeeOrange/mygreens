@@ -14,11 +14,13 @@ class SpamModel(db.Model):
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now, onupdate=datetime.now)
 
+
+    
 # データ作成
 def init_db(app):
     db.init_app(app)
     db.create_all()
-
+    
 # 全データの取得
 def get_all():
     return SpamModel.query.order_by(SpamModel.pk).all()

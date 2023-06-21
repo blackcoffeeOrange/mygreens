@@ -1,18 +1,13 @@
 <template>
     <div class="wrap">
         <ul>
-           <!-- <li class="nav_item">
-                <router-link :to="{ name: 'home'}">
-                    Home
-                </router-link>
-            </li> -->
            <li class="nav_item">
-                <router-link :to="{ name: 'list'}">
+                <router-link :to="{ name: 'green', params: { id: '0' }}">
                     list
                 </router-link>
             </li>
            <li class="nav_item">
-                <router-link :to="{ name: 'list'}">
+                <router-link :to="{ name: 'new'}">
                     new
                 </router-link>
             </li>

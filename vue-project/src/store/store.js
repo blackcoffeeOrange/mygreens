@@ -43,7 +43,8 @@ export default createStore({
         getAll(context){
             
             console.log("getAll")
-            axios.get('http://localhost:8000/green')
+            axios.get('http://localhost:5000/')
+            // axios.get('http://localhost:8000/green')
             .then(function (response) {
                 console.log("成功",response.data);
                 // handle success(axiosの処理が成功した場合に処理させたいことを記述)
@@ -60,8 +61,8 @@ export default createStore({
                 console.log(error);
             })
             .finally(function () {
-                    // always executed(axiosの処理結果によらずいつも実行させたい処理を記述)
-                    console.log("終了");
+                // always executed(axiosの処理結果によらずいつも実行させたい処理を記述)
+                console.log("終了");
             });
         }
     },

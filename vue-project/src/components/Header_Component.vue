@@ -2,12 +2,12 @@
     <div class="wrap">
         <ul>
             <li class="nav_item">
-                <router-link :to="{ name: 'home'}">
+                <router-link :to="{ name: 'about'}">
                     About
                 </router-link>
             </li>
             <li class="nav_item">
-                <router-link :to="{ name: 'home'}">
+                <router-link :to="{ name: 'memo'}">
                     Memo
                 </router-link>
             </li>
