@@ -1,14 +1,29 @@
+<script setup>
+import { computed, reactive, ref, onMounted} from 'vue'
+import { useStore } from 'vuex'
+import { useRouter, useRoute, } from 'vue-router';
+import List_Component from '../components/List_Component.vue'
+import Detail_Component from '../components/Detail_Component.vue'
+const Router = useRouter()
+const Route = useRoute()
+
+// 親からid取得
+const props = defineProps(['id'])
+const store = useStore()
+const green = computed(() => store.getters.getGreenById(props.id))
+console.log(green)
+</script>
 <template>
     <div class="wrap">
         
-                  <div>
+        <!-- <div> -->
 
-                    <p>{{ $route.params.id }}</p>
-                    <h1>{{ green.name }}</h1>
+                    <p>{{ props.id }}</p>
+                    <!-- <h1>{{ green.name }}</h1> -->
                     <!-- <button @click="increment">
                   {{ state.count }}
                 </button> -->
-                    <dl>
+                    <!-- <dl>
                         <div>
                             <dt>
                                 id
@@ -25,7 +40,7 @@
                                 <input type="text" v-model="green.name">
                             </dd>
                         </div>
-                        <!-- <div>
+                        <div>
                     <dt>
                       number
                     </dt>
@@ -33,15 +48,12 @@
                       <input type="text" v-model="number">
                       <button @click="add()">+1</button>
                     </dd>
-                  </div> -->
+                  </div>
                     </dl>
-                </div>
+                </div> -->
     </div>
 
 </template>
-<script setup>
-
-</script>
 <style scoped>
 .wrap {
     flex:1;

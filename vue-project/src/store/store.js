@@ -42,11 +42,11 @@ export default createStore({
         // アクションは任意の非同期処理を含むことができます。
         getAll(context){
             
-            console.log("getAll")
-            axios.get('http://localhost:5000/')
-            // axios.get('http://localhost:8000/green')
+            // console.log("getAll")
+            // axios.get('http://localhost:5000/')
+            axios.get('http://localhost:8000/green')
             .then(function (response) {
-                console.log("成功",response.data);
+                // console.log("成功",response.data);
                 // handle success(axiosの処理が成功した場合に処理させたいことを記述)
                 context.state.greens = response.data
                 // for (let i = 0; i < plantList.length; i++) {
@@ -62,8 +62,33 @@ export default createStore({
             })
             .finally(function () {
                 // always executed(axiosの処理結果によらずいつも実行させたい処理を記述)
-                console.log("終了");
+                // console.log("終了");
             });
+        }
+        ,getGreenById: (state) => (id) => {
+               // console.log("getAll")
+            // axios.get('http://localhost:5000/')
+            axios.get('http://localhost:8000/green')
+            .then(function (response) {
+                // console.log("成功",response.data);
+                // handle success(axiosの処理が成功した場合に処理させたいことを記述)
+                context.state.greens = response.data
+                // for (let i = 0; i < plantList.length; i++) {
+        
+                //     console.log(plantList[i]);
+                // }
+                // console.log(listdata);
+                // return plantList
+            })
+            .catch(function (error) {
+                // handle error(axiosの処理にエラーが発生した場合に処理させたいことを記述)
+                console.log(error);
+            })
+            .finally(function () {
+                // always executed(axiosの処理結果によらずいつも実行させたい処理を記述)
+                // console.log("終了");
+            });
+            // return state.greens.find(green => green.id === id)
         }
     },
     modules: {

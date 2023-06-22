@@ -13,14 +13,11 @@ const id = parseInt(Route.params.id)
 
         <div class="d-flex">
             <List_Component />
-            <p>
-
-            </p>
             <div v-if="id !=0 ">
-                <Detail_Component/>
+                <Detail_Component  :id="id"/>
             </div>
             <div v-else>
-                {{ $route.params.id }}
+                <!-- パラメーターが0 -->
                 なし
             </div>
         </div>

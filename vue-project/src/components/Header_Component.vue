@@ -6,11 +6,6 @@
                     About
                 </router-link>
             </li>
-            <li class="nav_item">
-                <router-link :to="{ name: 'memo'}">
-                    Memo
-                </router-link>
-            </li>
         </ul>
     </div>
 </template>
