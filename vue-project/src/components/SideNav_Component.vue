@@ -26,6 +26,7 @@ import { RouterLink } from 'vue-router';
         background-color: var(--bg);
         color: var(--color);
         min-width: 50px;
+            border-right:1px solid #04b146;
     }
     .nav_item{
         color: var(--color);

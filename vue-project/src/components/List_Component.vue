@@ -1,30 +1,29 @@
 <template>
-   
-   <div class="wrap">
+    <div class="wrap">
 
-       <!-- 名前だけで新規登録 -->
-       <div>
-        <label for="">name</label>
-        <input type="text" v-model="newName">
-    </div>
-    <div>
-        <button @click="save">追加</button>
-    </div>
-    
-    <p>{{ count }}</p>
-    <ul>
-        <li v-for="green in greens" :key="green.id">
-            <router-link :to="{name: 'detail', params:{ id: green.id } }">
-                {{ green.id }},
-                {{ green.name }}
-            </router-link>
-        </li>
-    </ul>
-    
-    <!-- <h3>{{ title }}({{ number }})</h3> -->
-    
-    <!-- API経由でデータを取得 -->
-    <!-- <input type="text" v-model="newPlant">
+        <!-- 名前だけで新規登録 -->
+        <div>
+            <label for="">name</label>
+            <input type="text" v-model="newName">
+        </div>
+        <div>
+            <button @click="save">追加</button>
+        </div>
+
+        <p>{{ count }}</p>
+        <ul>
+            <li v-for="green in greens" :key="green.id">
+                <router-link :to="{ name: 'green', params: { id: green.id } }">
+                    {{ green.id }},
+                    {{ green.name }}
+                </router-link>
+            </li>
+        </ul>
+
+        <!-- <h3>{{ title }}({{ number }})</h3> -->
+
+        <!-- API経由でデータを取得 -->
+        <!-- <input type="text" v-model="newPlant">
         <button @click="addPlant()">
             追加
         </button>
@@ -41,7 +40,7 @@
     <p v-else>
         追加してください
     </p> -->
-</div>
+    </div>
 </template>
 <script setup>
 import { computed, reactive, ref, onMounted } from 'vue'
@@ -72,7 +71,7 @@ const save = () => {
     // console.log("newName", newName.value)
     // store.commit('save', newGreen.data )
     store.commit('save', {
-         name: newName.value
+        name: newName.value
     })
     // Router.push('/')
     newName.value = ''
@@ -127,12 +126,12 @@ const save = () => {
 // 
 </script>
 <style scoped>
-.wrap{
+.wrap {
     height: 100vh;
     padding: 15px;
     background-color: var(--bg);
     color: var(--color);
     min-width: 15vw;
-    border-left:1px solid #04b146;
+    border-right: 1px solid #04b146;
 }
 </style>

@@ -18,6 +18,9 @@ import SideNav_Component from './components/SideNav_Component.vue'
   --bg: #313135;
   --color: #e7e7f2;
 }
+body{
+  background-color: var(--bg);
+}
 ul,li{
   margin: 0;
   padding: 0;

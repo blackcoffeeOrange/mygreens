@@ -7,18 +7,27 @@ export default createStore({
             // { 'id': 1, 'name': 'bb' }
             // , { 'id': 2, 'name': 'abc' }
         ]
+        ,green: [
+            // { 'id': 1, 'name': 'bb' }
+            // , { 'id': 2, 'name': 'abc' }
+        ]
         , count: 2
     },
     getters: {
         getAll: (state) => {
             return state.greens
         },
-        getGreenById: (state) => (id) => {
-            return state.greens.find(green => green.id === id)
+        getGreenById: (state)=> {
+        console.log("ｈｈｈｈ",state)
+            return state.green
         }
     },
     mutations: {
-        save(state, newGreen) {
+        green(state, data){
+            state.green = data
+        }
+
+        ,save(state, newGreen) {
             console.log("newGreen", newGreen)
             // console.log("sname", name.id)
 
@@ -65,20 +74,22 @@ export default createStore({
                 // console.log("終了");
             });
         }
-        ,getGreenById: (state) => (id) => {
-               // console.log("getAll")
-            // axios.get('http://localhost:5000/')
-            axios.get('http://localhost:8000/green')
+        ,getGreenById(context,payload){
+            console.log("あああああ",context)
+            //    console.log("id",data.id)
+            // // axios.get('http://localhost:5000/')
+            axios.get('http://localhost:8000/green?id='+payload.id)
             .then(function (response) {
                 // console.log("成功",response.data);
-                // handle success(axiosの処理が成功した場合に処理させたいことを記述)
-                context.state.greens = response.data
-                // for (let i = 0; i < plantList.length; i++) {
-        
-                //     console.log(plantList[i]);
-                // }
-                // console.log(listdata);
-                // return plantList
+                //     // handle success(axiosの処理が成功した場合に処理させたいことを記述)
+                context.state.green = response.data
+                console.log("いいい",context.state.green)
+            //     // for (let i = 0; i < plantList.length; i++) {
+         context.commit('green')
+            //     //     console.log(plantList[i]);
+            //     // }
+            //     // console.log(listdata);
+                // return response.data
             })
             .catch(function (error) {
                 // handle error(axiosの処理にエラーが発生した場合に処理させたいことを記述)
@@ -88,7 +99,7 @@ export default createStore({
                 // always executed(axiosの処理結果によらずいつも実行させたい処理を記述)
                 // console.log("終了");
             });
-            // return state.greens.find(green => green.id === id)
+            // // return state.greens.find(green => green.id === id)
         }
     },
     modules: {

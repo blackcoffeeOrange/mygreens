@@ -1,6 +1,6 @@
 {
     "green": [
-        { "id": 1, "name": "foo", "category": "" },
-        { "id": 2, "name": "bar", "category": "" }
+        { "id": 1, "name": "foo", "age": "21" },
+        { "id": 2, "name": "bar", "age": "1" }
     ]
 }   
