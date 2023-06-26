@@ -5,37 +5,45 @@ import SideNav_Component from './components/SideNav_Component.vue'
 
 </script>
 <template>
-    <Header_Component/>
-    <div class="d-flex">
-      <SideNav_Component/>
-      <main>
-        <router-view />
-      </main>
-    </div>
+  <Header_Component />
+  <div class="d-flex">
+    <SideNav_Component />
+    <main>
+      <router-view />
+    </main>
+  </div>
 </template>
 <style>
-:root{
+:root {
   --bg: #313135;
   --color: #e7e7f2;
 }
-body{
+
+body {
   background-color: var(--bg);
+  color: var(--color);
 }
-ul,li{
+
+ul,
+li {
   margin: 0;
   padding: 0;
 }
-li{
+
+li {
   list-style: none;
 }
-main{
+
+main {
   flex: 1;
 }
-a{
+
+a {
   color: var(--color);
   text-decoration: none;
   display: inline-block;
 }
+
 /* 
 header {
   line-height: 1.5;

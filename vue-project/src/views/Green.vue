@@ -5,22 +5,20 @@ import List_Component from '../components/List_Component.vue'
 import Detail_Component from '../components/Detail_Component.vue'
 const Router = useRouter()
 const Route = useRoute()
-const id = computed(() => parseInt(Route.params.id))
+const id = computed(() => Route.params.id)
 // const id = parseInt(Route.params.id)
-// console.log("aaaaa")
+
 </script>
 
 <template>
     <div class="detail">
 
         <div class="d-flex">
+
             <List_Component />
-            <div v-if="id != 0">
-                <Detail_Component :id="id" />
-            </div>
+            <Detail_Component v-if="id" :id="id" />
             <div v-else>
-                <!-- パラメーターが0 -->
-                なし
+                <!-- パラメーターがない場合 -->
             </div>
         </div>
     </div>
