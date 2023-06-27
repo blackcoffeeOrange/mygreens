@@ -16,11 +16,14 @@ import SideNav_Component from './components/SideNav_Component.vue'
 <style>
 :root {
   --bg: #313135;
+  --bg_transparent: #31313580;
   --color: #e7e7f2;
 }
 
 body {
-  background-color: var(--bg);
+  background-image: url(./components/bg/roman-synkevych-qPvBmSvmohs-unsplash.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
   color: var(--color);
 }
 
@@ -42,6 +45,12 @@ a {
   color: var(--color);
   text-decoration: none;
   display: inline-block;
+  transition: .3s;
+}
+
+a:hover {
+  text-decoration: none;
+  color: var(--color);
 }
 
 /* 

@@ -2,19 +2,19 @@
     <div class="wrap">
 
         <!-- 名前だけで新規登録 -->
-        <div>
-            <label for="">name</label>
+        <div class="add_list_form">
+
             <input type="text" v-model="newName">
-        </div>
-        <div>
-            <button @click="save">追加</button>
+            <div class="button" @click="save">追加</div>
         </div>
 
-        <p>{{ count }}</p>
+        <div class="num_of_green">
+            <div>Total : </div>
+            <div>{{ num_of_green }}</div>
+        </div>
         <ul>
             <li v-for="green in greens" :key="green.id">
                 <router-link :to="{ name: 'green', params: { id: green.id } }">
-                    {{ green.id }},
                     {{ green.name }}
                 </router-link>
             </li>
@@ -52,7 +52,7 @@ const Router = useRouter()
 const Route = useRoute()
 const store = useStore()
 const greens = computed(() => store.getters.getAll)
-const count = computed(() => store.state.count) // typed as number
+const num_of_green = greens.value.length
 
 store.dispatch('getAll')
 
@@ -128,10 +128,63 @@ const save = () => {
 <style scoped>
 .wrap {
     height: 100vh;
-    padding: 15px;
-    background-color: var(--bg);
+    padding: 15px 0;
+    background-color: var(--bg_transparent);
     color: var(--color);
     min-width: 15vw;
     border-right: 1px solid #04b146;
+}
+
+li {
+    display: block;
+}
+
+li a {
+    display: block;
+    padding: 10px;
+    border-bottom: 1px solid #04b146;
+}
+
+li a:hover {
+    background-color: var(--bg_transparent);
+}
+
+.num_of_green {
+    margin: 1rem 10px;
+    padding: .3em 10px;
+    display: inline-flex;
+    font-size: .8rem;
+    border: 1px solid #04b146;
+    background-color: #04b146;
+    color: rgb(34, 34, 34);
+    font-weight: bold;
+}
+
+.add_list_form {
+    padding: 10px;
+    display: flex;
+
+}
+
+.add_list_form label {}
+
+.add_list_form input {
+    width: 70%;
+    background-color: var(--bg_transparent);
+    margin-right: .5em;
+    color: var(--color);
+    border: 1px solid var(--color);
+}
+
+.add_list_form .button {
+    width: 25%;
+    font-size: .8rem;
+    padding: .1em .5em;
+    margin: 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4e705b;
 }
 </style>

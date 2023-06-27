@@ -1,20 +1,49 @@
 {
     "green": [
-        { "id": 1, "baseinfo": 1,"nickname": "nicname1","age": "21" }
-       ,{ "id": 2, "baseinfo": 2, "nickname": "nicname2","age": "1" }
-        ,{ "id": 3, "baseinfo": 3, "nickname": "nicname3","age": "100" }
-        ,{ "id": 4, "baseinfo": 4,"nickname": "nicname4","age": "200" }
+        { 
+            "id": 1
+            ,"baseinfo_id": 1
+            ,"green_mynote_id":1
+            ,"my_group_id":1
+            ,"green_kinds":1
+            ,"name": "アロマティカス"
+            ,"breed":""
+            ,"age": "21"
+            ,"flower_color":""
+            ,"price": "500"
+            ,"date_of_purchase":"2021-12-1" 
+            ,"flowering_period":"春" 
+            ,"producer":"ハイポネックス" 
+            ,"production_area":"青森県" 
+            ,"growth_period":"春" 
+            ,"dormant_period ":"冬" 
+            ,"crossbreeding":"" 
+            ,"number_of_withered":"2" 
+        }
     ]
     ,"green_baseinfo": [
-        { "id": 1, "name": "foo", "from": "21" }
-       ,{ "id": 2, "name": "bar", "from": "1" }
-        ,{ "id": 3, "name": "aaaaaaa", "from": "100" }
-        ,{ "id": 4, "name": "bbbbbbbr", "from": "200" }
+        { 
+            "id": 1
+            ,"name": "アロマティカス"
+            ,"alias": "パステルミント"
+            ,"scientific_name":"Plectranthus amboinicus"
+            ,"english_name": ["Aromaticus","cuba oregano"]
+            ,"family_name": "シソ科" 
+            ,"genus_name": "プレクトランサス属" 
+            ,"place_of_origin": "インド~南アフリカ" 
+            ,"Hardiness_zone_number": "" 
+            ,"breed_number": "200~" 
+        }
+    
     ]
-    ,"green_daily": [
-        { "id": 1, "name": "foo", "age": "21" }
-       ,{ "id": 2, "name": "bar", "age": "1" }
-        ,{ "id": 3, "name": "aaaaaaa", "age": "100" }
-        ,{ "id": 4, "name": "bbbbbbbr", "age": "200" }
+    ,"green_mynote": [
+        { "id": 1, "date": "2021-12-1", "note_path": "./mynote/1/2021-12-1" }
+    ]
+    ,"my_group": [
+        { "id": 1, "name":"越冬多肉" }
+    ]
+    ,"green_kinds": [
+        { "id": 1, "name":"果樹" }
+        ,{ "id": 2, "name":"多肉" }
     ]
 }   

@@ -23,7 +23,7 @@ import { RouterLink } from 'vue-router';
     justify-content: space-between;
     height: 40px;
     padding: 0 15px;
-    background-color: var(--bg);
+    background-color: var(--bg_transparent);
     color: var(--color);
     width: 100%;
     border-bottom: 1px solid #04b146;
