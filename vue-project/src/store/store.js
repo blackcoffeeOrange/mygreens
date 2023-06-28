@@ -4,33 +4,30 @@ import axios from 'axios'
 export default createStore({
     state: {
         greens: [
-            // { 'id': 1, 'name': 'bb' }
-            // , { 'id': 2, 'name': 'abc' }
+            // 全植物データ
         ]
         ,green: [
-            // { 'id': 1, 'name': 'bb' }
-            // , { 'id': 2, 'name': 'abc' }
+            //植物単体データ
         ]
-        , count: 2
+        // , count: 2
     },
     getters: {
         getAll: (state) => {
             return state.greens
         },
         getGreen: (state)=> {
-        // console.log("getters.getGreen",state.green)
             return state.green
         }
     },
     mutations: {
         green(state, data){
-            // console.log("mutations",data)
             state.green = data[0]
-            // console.log("mutations",state.green)
         }
-
+        /**
+         * @param newGreen 入力値
+         */
         ,save(state, newGreen) {
-            // console.log("newGreen", newGreen)
+            console.log("state.greens.length", state.greens.length)
             // console.log("sname", name.id)
 
             // // idがあったら
@@ -39,9 +36,10 @@ export default createStore({
             //   x.title = newMemo.title
             //   x.content = newMemo.content
             // } else {
-            newGreen.id = ++state.count
+            newGreen.id = state.greens.length + 1
             // unshift() 配列の先頭に値を挿入
             state.greens.unshift(newGreen)
+            console.log(state.greens)
         },
         delete(state, id) {
 
@@ -102,6 +100,31 @@ export default createStore({
                 // console.log("終了");
             });
             // // return state.greens.find(green => green.id === id)
+        }
+        ,save({ commit, state }, payload){
+            
+            console.log("payload",payload)
+            // axios.get('http://localhost:5000/')
+            axios.post('http://localhost:8000/green',payload)
+            .then(function (response) {
+                console.log("成功",response.data);
+                // handle success(axiosの処理が成功した場合に処理させたいことを記述)
+                // context.state.greens = response.data
+                // for (let i = 0; i < plantList.length; i++) {
+                // commit('save',response.data)
+                //     console.log(plantList[i]);
+                // }
+                // console.log(listdata);
+                // return plantList
+            })
+            .catch(function (error) {
+                // handle error(axiosの処理にエラーが発生した場合に処理させたいことを記述)
+                // console.log(error);
+            })
+            .finally(function () {
+                // always executed(axiosの処理結果によらずいつも実行させたい処理を記述)
+                // console.log("終了");
+            });
         }
     },
     modules: {

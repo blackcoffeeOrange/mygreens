@@ -16,8 +16,11 @@ const id = computed(() => Route.params.id)
         <div class="d-flex">
 
             <List_Component />
-            <Detail_Component v-if="id" :id="id" />
+            <Detail_Component v-if="id != 0" :id="id" />
             <div v-else>
+                <p>
+                    選択されていません
+                </p>
                 <!-- パラメーターがない場合 -->
             </div>
         </div>

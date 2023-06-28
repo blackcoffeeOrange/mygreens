@@ -6,9 +6,10 @@ const Router = useRouter()
 const Route = useRoute()
 
 // propsからid取得
+// const props = defineProps('id')
 const props = defineProps({
   id: {
-    default: "1"
+    default: 0
   }
 })
 let id = props.id
@@ -227,7 +228,7 @@ const withered_count = () => {
 
       </dl>
 
-      <button>save</button>
+      <button>update</button>
 
     </div>
 

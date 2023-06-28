@@ -2,7 +2,7 @@
     <div class="wrap">
         <ul>
             <li class="nav_item">
-                <router-link :to="{ name: 'green', params: { id: '0' } }">
+                <router-link :to="{ name: 'green', params: { id: 0 } }">
                     <img src=".\icons\list.svg" alt="一覧" class="icon">
                 </router-link>
             </li>

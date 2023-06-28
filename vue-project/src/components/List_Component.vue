@@ -52,8 +52,7 @@ const Router = useRouter()
 const Route = useRoute()
 const store = useStore()
 const greens = computed(() => store.getters.getAll)
-const num_of_green = greens.value.length
-
+const num_of_green = computed(() => greens.value.length)
 store.dispatch('getAll')
 
 // console.log("greens",greens)
@@ -70,9 +69,11 @@ const newGreen = {
 const save = () => {
     // console.log("newName", newName.value)
     // store.commit('save', newGreen.data )
-    store.commit('save', {
-        name: newName.value
-    })
+    // store.commit('save', {
+    //     name: newName.value
+    // })
+
+    store.dispatch('save', { name: newName.value })
     // Router.push('/')
     newName.value = ''
 
