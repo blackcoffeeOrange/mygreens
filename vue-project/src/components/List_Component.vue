@@ -7,7 +7,6 @@
             <input type="text" v-model="newName">
             <div class="button" @click="save">追加</div>
         </div>
-
         <div class="num_of_green">
             <div>Total : </div>
             <div>{{ num_of_green }}</div>
@@ -47,13 +46,14 @@ import { computed, reactive, ref, onMounted } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter, useRoute } from 'vue-router';
 
-
 const Router = useRouter()
 const Route = useRoute()
 const store = useStore()
 const greens = computed(() => store.getters.getAll)
 const num_of_green = computed(() => greens.value.length)
 store.dispatch('getAll')
+
+
 
 // console.log("greens",greens)
 /**名前のみで作成 */

@@ -22,6 +22,8 @@ watch(props, async (newProps, oldProps) => {
 store.dispatch('getGreenById', { id: id })
 const green = computed(() => store.getters.getGreen)
 
+
+
 /**
  * form
  */
@@ -30,7 +32,15 @@ const green = computed(() => store.getters.getGreen)
  * 呼び名
  * name
  */
-const name = ref(green.value.name)
+const name = computed(() => green.value.name)
+
+/**
+ * 種類
+ * kinds
+ */
+store.dispatch('getAllKinds')
+const kinds_list = computed(() => store.getters.getAllKinds)
+console.log("kinds_list", kinds_list.value)
 /**
  * 品種
  * breed
@@ -98,6 +108,12 @@ const withered_count = () => {
   // console.log(count)
   // number_of_withered = count.toString()
 }
+
+
+const update = () => {
+  console.log("update1")
+  store.dispatch('update', { id: id, "name": name.value })
+}
 </script>
 <template>
   <div class="wrap">
@@ -118,7 +134,9 @@ const withered_count = () => {
             <label for="green_kinds">種類</label>
           </dt>
           <dd>
-            <input type="text" id="green_name" v-model="green.name">
+            <select v-if="kinds_list" name="" id="">
+              <option v-for="kinds in kinds_list" value="">{{ kinds.name }}</option>
+            </select>
             <!-- <select id="green_kinds">
             <option value="">種類１</option>
             <option value="">種類２</option>
@@ -228,7 +246,7 @@ const withered_count = () => {
 
       </dl>
 
-      <button>update</button>
+      <button @click="update">update</button>
 
     </div>
 
