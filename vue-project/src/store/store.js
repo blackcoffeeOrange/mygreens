@@ -45,7 +45,12 @@ export default createStore({
     actions: {
         // アクションは、状態を変更するのではなく、ミューテーションをコミットします。
         // アクションは任意の非同期処理を含むことができます。
-        getAll(context){
+        // ミューテーションはactionと似ていますが、同期的である必要があります
+       
+        /**
+         * すべての植物を取得
+         */
+         getAll(context){
             axios.get('http://localhost:8000/green?_sort=id&_order=desc')
             .then(function (response) {
                 context.state.greens = response.data
@@ -55,10 +60,13 @@ export default createStore({
             .finally(function () {
             });
         }
+        /**
+         * すべての種類を取得
+         */
         ,getAllKinds(context){
             axios.get('http://localhost:8000/green_kinds')
             .then(function (response) {
-                console.log("response.data",response.data)
+                console.log("取得成功",response.data)
                 context.state.green_kinds = response.data
             })
             .catch(function (error) {
@@ -66,10 +74,14 @@ export default createStore({
             .finally(function () {
             });
         }
+        /**
+         * idに紐づくデータを取得
+         */
         ,getGreenById({ commit, state }, payload){
             // // axios.get('http://localhost:5000/')
             axios.get('http://localhost:8000/green?id='+payload.id)
             .then(function (response) {
+                console.log(response.data)
                 state.green = response.data
             commit('green',response.data)
             })
@@ -78,49 +90,43 @@ export default createStore({
             .finally(function () {
             });
         }
+        /**
+         * データベースに保存
+         */
         ,save({ commit, state }, payload){
-            
-            console.log("payload",payload)
             // axios.get('http://localhost:5000/')
             axios.post('http://localhost:8000/green',payload)
+             /**
+             * @todo ログ出力
+             */
             .then(function (response) {
-                console.log("成功",response.data);
-                 commit('save',response.data)
-                // handle success(axiosの処理が成功した場合に処理させたいことを記述)
-                // context.state.greens = response.data
-                // for (let i = 0; i < plantList.length; i++) {
-                // commit('save',response.data)
-                //     console.log(plantList[i]);
-                // }
-                // console.log(listdata);
-                // return plantList
+                commit('save',response.data)
             })
+             /**
+             * @todo ログ出力
+             */
             .catch(function (error) {
-                // handle error(axiosの処理にエラーが発生した場合に処理させたいことを記述)
-                // console.log(error);
+                if (error){
+                    console.log("保存エラー")
+                }
             })
+            /**
+             * @todo ログ出力
+             */
             .finally(function () {
-                // always executed(axiosの処理結果によらずいつも実行させたい処理を記述)
-                // console.log("終了");
             });
         }
+         /**
+         * idに紐づくデータを更新
+         */
         ,update({ commit, state }, payload){
           
-      console.log("update  payload",payload)
-            axios.patch('http://localhost:8000/green/'+payload.id, {
-                name: payload.name
-            })
+            console.log("update  payload",payload)
+            axios.patch('http://localhost:8000/green/'+payload.id,payload)
+            
              .then(function (response) {
                 console.log("成功",response.data);
-                //  commit('save',response.data)
-                // handle success(axiosの処理が成功した場合に処理させたいことを記述)
-                // context.state.greens = response.data
-                // for (let i = 0; i < plantList.length; i++) {
-                // commit('save',response.data)
-                //     console.log(plantList[i]);
-                // }
-                // console.log(listdata);
-                // return plantList
+               
             })
             .catch(function (error) {
                 // handle error(axiosの処理にエラーが発生した場合に処理させたいことを記述)

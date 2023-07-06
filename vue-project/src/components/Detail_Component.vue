@@ -24,84 +24,82 @@ const green = computed(() => store.getters.getGreen)
 
 
 
-/**
- * form
- */
+
 
 /**
  * 呼び名
  * name
  */
 const name = computed(() => green.value.name)
-
 /**
  * 種類
  * kinds
  */
 store.dispatch('getAllKinds')
 const kinds_list = computed(() => store.getters.getAllKinds)
-console.log("kinds_list", kinds_list.value)
+const kinds_selected = ref('')
 /**
  * 品種
  * breed
  */
-const breed = ref(green.value.breed)
+const breed = computed(() => green.value.breed)
 /**
  * 生まれてからの年数
  * age
  */
-const age = ref(green.value.age)
+const age = computed(() => green.value.age)
 /**
  * 花色
  * flower_color
  */
-const flower_color = ref(green.value.flower_color)
+const flower_color = computed(() => green.value.flower_color)
 /**
  * 購入価格
  * price
  */
-const price = ref(green.value.price)
+const price = computed(() => green.value.price)
 /**
  * 購入日
  * date_of_purchase
  */
-const date_of_purchase = ref(green.value.date_of_purchase)
+const date_of_purchase = computed(() => green.value.date_of_purchase)
 /**
  * 開花時期
  * flowering_period
  */
-const flowering_period = ref(green.value.flowering_period)
+const flowering_period = computed(() => green.value.flowering_period)
 /**
  * 生産者
  * producer
  */
-const producer = ref(green.value.producer)
+const producer = computed(() => green.value.producer)
 /**
  * 生産地
  * production_area
  */
-const production_area = ref(green.value.production_area)
+const production_area = computed(() => green.value.production_area)
 /**
  * 成長期
  * growth_period
  */
-const growth_period = ref(green.value.growth_period)
+const growth_period = computed(() => green.value.growth_period)
 /**
  * 休眠期
  * dormant_period
  */
-const dormant_period = ref(green.value.dormant_period)
+const dormant_period = computed(() => green.value.dormant_period)
 /**
  * 交配系統
  * crossbreeding
  */
-const crossbreeding = ref(green.value.crossbreeding)
+const crossbreeding = computed(() => green.value.crossbreeding)
 /**
  * 枯れた数
  * number_of_withered
  */
 let count
 let number_of_withered = ref(green.value.number_of_withered)
+
 const withered_count = () => {
   console.log(number_of_withered.value)
   // count = number_of_withered++
@@ -109,10 +107,29 @@ const withered_count = () => {
   // number_of_withered = count.toString()
 }
 
-
+/**
+ *  更新 
+ * 
+ */
 const update = () => {
-  console.log("update1")
-  store.dispatch('update', { id: id, "name": name.value })
+  store.dispatch('update', {
+    id: id
+    , name: name.value
+    , kinds: kinds_selected.value
+    , breed: breed.value
+    , age: age.value
+    , flower_color: flower_color.value
+    , price: price.value
+    , date_of_purchase: date_of_purchase.value
+    , flowering_period: flowering_period.value
+    , producer: producer.value
+    , production_area: production_area.value
+    , growth_period: growth_period.value
+    , dormant_period: dormant_period.value
+    , crossbreeding: crossbreeding.value
+    , dormant_period: dormant_period.value
+    , number_of_withered: number_of_withered.value
+  })
 }
 </script>
 <template>
@@ -131,16 +148,12 @@ const update = () => {
         </div>
         <div class="form_group">
           <dt>
-            <label for="green_kinds">種類</label>
+            <label for="green_kinds">種類{{ selected }}</label>
           </dt>
           <dd>
-            <select v-if="kinds_list" name="" id="">
-              <option v-for="kinds in kinds_list" value="">{{ kinds.name }}</option>
+            <select v-if="kinds_list" v-model="kinds_selected" name="" id="">
+              <option v-for="kinds in kinds_list" :value="kinds.id" :key="kinds.id">{{ kinds.name }}</option>
             </select>
-            <!-- <select id="green_kinds">
-            <option value="">種類１</option>
-            <option value="">種類２</option>
-          </select> -->
           </dd>
         </div>
 

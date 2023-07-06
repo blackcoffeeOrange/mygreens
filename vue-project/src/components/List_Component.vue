@@ -61,10 +61,10 @@ const newName = ref('')
 // const newGreen = computed(() => {
 //     name: name
 // })
-const newGreen = {
-    // dataの中のtitleとcontent
-    name: newName.value
-}
+// const newGreen = {
+//     // dataの中のtitleとcontent
+//     name: newName.value
+// }
 // 保存
 const save = () => {
     // console.log("newName", newName.value)

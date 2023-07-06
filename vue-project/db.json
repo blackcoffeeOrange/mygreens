@@ -18,7 +18,8 @@
       "growth_period": "春",
       "dormant_period ": "冬",
       "crossbreeding": "",
-      "number_of_withered": "2"
+      "number_of_withered": "2",
+      "kinds": 2
     },
     {
       "name": "ss",
@@ -37,16 +38,21 @@
       "id": 6
     },
     {
-      "name": "ss",
-      "id": 7
+      "name": "sssssあああ",
+      "id": 7,
+      "kinds": "",
+      "breed": "ss",
+      "age": "0",
+      "flower_color": "白"
     },
     {
       "name": "ss",
       "id": 8
     },
     {
-      "name": "dd",
-      "id": 9
+      "name": "薄荷",
+      "id": 9,
+      "kinds": ""
     },
     {
       "name": "kkk",

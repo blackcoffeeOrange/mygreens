@@ -1,28 +1,24 @@
-from flask import Flask, render_template #Flask
-import sqlite3 #データベース
+from flask import Flask, render_template, jsonify #Flask
+# import sqlite3 #データベース
 from api import api_bp
 from models import get_all, init_db, insert#ORMからメソッドimport   
 
-
-
-#データベースに接続
-conn = sqlite3.connect("Sample.sqlite3")
-#カーソル生成
-c = conn.cursor()
-#テーブルの存在を確認してみて無ければ作成（カラム　id、日時、温度）
-c.execute("CREATE TABLE IF NOT EXISTS temp_table (id INTEGER PRIMARY KEY AUTOINCREMENT, temp INTEGER, timestamp TEXT PRYMARYKEY UNIQUE)")
-#テーブル情報保存
-conn.commit()
-#データベース接続を閉じる
-conn.close()
-
-
+# APIとして使用する設定
 app = Flask(__name__, static_folder='../vue-project/dist/assets', template_folder='../vue-project/dist')
-# app.register_blueprint(api_bp)#apiのインスタンスを登録
+
+
+# flask_SQLALCHEMY(O/Rマッパー)の設定（donfig）
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///myspa.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# TrueにするとSQL文等のログを出力
+app.config['SQLALCHEMY_ECHO']=True
+
+
+# blueprintからapi.pyを持ってくる
 app.register_blueprint(api_bp)
 
 
+# シングルページアプリケーション用フロントエンドフレームワークレンダリング
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def index(path):
